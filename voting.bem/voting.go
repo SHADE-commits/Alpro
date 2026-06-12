@@ -8,31 +8,29 @@ func vote() {
 	fmt.Print("Enter Your NIM: ")
 	fmt.Scan(&nim)
 
-	index := findVoter(nim)
+	index := sequentialSearchVoter(nim)
 
 	if index == -1 {
+		voters[voterCount].NIM = nim
+		voters[voterCount].HasVoted = false
 
-		voters = append(voters, Voter{
-			NIM:      nim,
-			HasVoted: false,
-		})
-
-		index = len(voters) - 1
+		index = voterCount
+		voterCount++
 	}
 
 	if voters[index].HasVoted {
-		fmt.Println("You have already voted")
+		fmt.Println("You have already voted!")
 		return
 	}
 
 	showCandidates()
 
-	fmt.Print("Choose candidate number: ")
-
 	var choice int
+
+	fmt.Print("Choose candidate number: ")
 	fmt.Scan(&choice)
 
-	if choice <= 0 || choice > len(candidates) {
+	if choice < 1 || choice > candidateCount {
 		fmt.Println("Invalid candidate")
 		return
 	}
