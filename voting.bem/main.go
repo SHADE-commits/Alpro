@@ -3,34 +3,38 @@ package main
 import "fmt"
 
 func main() {
-	for {
-		fmt.Println("\n===== E-Vote BEM =====")
+	var menu int
+
+	for menu != 5 {
+		fmt.Println("\n===== E-VOTE BEM =====")
 		fmt.Println("1. Add Candidate")
-		fmt.Println("2. Vote")
-		fmt.Println("3. Show Results")
-		fmt.Println("4. Exit")
+		fmt.Println("2. Delete Candidate")
+		fmt.Println("3. Vote")
+		fmt.Println("4. Show Result")
+		fmt.Println("5. Exit")
+
 		fmt.Print("Choose menu: ")
+		fmt.Scan(&menu)
 
-		var choice int
-		fmt.Scan(&choice)
-
-		switch choice {
-
+		switch menu {
 		case 1:
 			addCandidate()
 
 		case 2:
-			vote()
+			deleteCandidate()
 
 		case 3:
-			showResults()
+			vote()
 
 		case 4:
-			fmt.Println("Program ended")
-			return
+			insertionSortDescending()
+			showCandidates()
+
+		case 5:
+			fmt.Println("Program finished")
 
 		default:
-			fmt.Println("Invalid choice")
+			fmt.Println("Invalid menu")
 		}
 	}
 }
